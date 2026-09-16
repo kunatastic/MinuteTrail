@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MinuteTrail is a simple, local-only Chrome extension that shows where your browsing time goes. No account, no analytics, no cloud sync.">
+  <meta name="theme-color" content="#f7f8f2">
+  <title>MinuteTrail — Know where your browsing time goes</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header wrap">
+    <a class="brand" href="./" aria-label="MinuteTrail home"><img src="assets/logo.svg" width="36" height="36" alt="">MinuteTrail</a>
+    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="privacy.html">Privacy</a><a class="nav-source" href="https://github.com/kunatastic/MinuteTrail">GitHub <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="dot"></span> A LITTLE MORE AWARENESS</p>
+        <h1>Your time leaves<br>a little <span class="serif">trail.</span></h1>
+        <p class="lede">See where your browsing time goes.<br>A quiet companion for a more intentional day.</p>
+        <div class="actions"><a class="button" href="https://github.com/kunatastic/MinuteTrail#install">Get MinuteTrail <span aria-hidden="true">↗</span></a><a class="text-link" href="#how-it-works">Take a closer look <span aria-hidden="true">↓</span></a></div>
+        <p class="availability">Chrome extension · Store release coming soon</p>
+        <div class="reassurance"><span>No account</span><span>No tracking servers</span><span>Just your browser</span></div>
+      </div>
+      <figure class="preview" aria-label="Illustrative example of the MinuteTrail overview, showing website time totals">
+        <div class="preview-top"><span class="mini-brand"><img src="assets/logo.svg" width="25" height="25" alt="">MinuteTrail</span><span class="pill">On-device only</span></div>
+        <div class="preview-heading"><span>Your day, at a glance</span><span class="muted">Today</span></div>
+        <div class="sample-total"><span>Focused browsing</span><strong>2h <span>24m</span></strong><small>A little perspective on your day.</small></div>
+        <div class="sample-site"><span class="site-letter sage">G</span><div><div class="site-line"><span>github.com</span><strong>1h 12m</strong></div><div class="bar"><span style="width:50%"></span></div></div></div>
+        <div class="sample-site"><span class="site-letter lavender">F</span><div><div class="site-line"><span>figma.com</span><strong>48m</strong></div><div class="bar"><span style="width:33%"></span></div></div></div>
+        <div class="sample-site"><span class="site-letter peach">W</span><div><div class="site-line"><span>wikipedia.org</span><strong>24m</strong></div><div class="bar"><span style="width:17%"></span></div></div></div>
+        <figcaption>Illustrative data. Your history stays in your browser.</figcaption>
+      </figure>
+      <img class="hero-trail" src="assets/trail.svg" width="480" height="160" alt="" aria-hidden="true">
+    </section>
+    <section id="how-it-works" class="features wrap" aria-labelledby="features-title">
+      <div class="section-intro"><p class="eyebrow">LESS GUESSING. MORE PERSPECTIVE.</p><h2 id="features-title">Small tool. Clear picture.</h2></div>
+      <div class="feature-grid">
+        <article><span class="feature-number">01 / NOTICE</span><svg class="line-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="9" width="38" height="30" rx="5"/><path d="M5 18h38M11 14h1m5 0h1M16 31l6-6 5 4 6-7"/></svg><h3>The tab you’re actually using.</h3><p>Follow your active website as you switch tabs and windows. Background tabs don’t add to your total.</p></article>
+        <article><span class="feature-number">02 / REFLECT</span><svg class="line-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M9 38V25m10 13V17m10 21V10m10 28V22M5 39h38"/><circle cx="39" cy="11" r="4"/></svg><h3>Find the shape of your day.</h3><p>See daily website totals, recent sessions, and fullscreen time. Look back over your last 30 days.</p></article>
+        <article><span class="feature-number">03 / KEEP IT YOURS</span><svg class="line-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5l15 6v12c0 10-15 20-15 20S9 33 9 23V11l15-6Z"/><path d="m17 24 5 5 10-11"/></svg><h3>Your history belongs here.</h3><p>Your browsing records stay in your browser profile. No account, analytics, or cloud sync.</p></article>
+      </div>
+    </section>
+    <section class="privacy-banner wrap" aria-labelledby="privacy-title"><div><p class="eyebrow">BUILT TO STAY LOCAL</p><h2 id="privacy-title">A time tracker.<br><span class="serif">Not a data collector for us.</span></h2><p>MinuteTrail processes website names and time on your device.<br>We don’t receive your browsing history.</p><a class="text-link" href="privacy.html">Read the privacy policy <span aria-hidden="true">→</span></a></div><svg class="privacy-art" viewBox="0 0 220 180" fill="none" aria-hidden="true"><rect x="28" y="28" width="155" height="103" rx="10"/><path d="M82 150h52m-26-19v19M28 48h155"/><circle cx="43" cy="38" r="2"/><circle cx="53" cy="38" r="2"/><rect x="87" y="80" width="38" height="29" rx="5" fill="#e8eddf"/><path d="M96 80v-8a10 10 0 0 1 20 0v8m-10 13v5"/><path class="art-trail" d="M9 108C-4 51 94-5 170 11s51 93 23 125"/></svg></section>
+    <section class="notes wrap" aria-label="A few useful details"><h2>A few things to know</h2><details><summary>When does the timer pause?</summary><p>When your browser window loses focus, your computer locks, or there has been no input for 60 seconds. You can also pause it yourself. Passive reading and fullscreen video pause after that idle threshold, too.</p></details><details><summary>What about multiple screens and profiles?</summary><p>Only the focused browser window’s active website is eligible. Each browser profile keeps its own history; there is no combined cross-profile dashboard. The extension measures browser focus, not which screen your eyes are looking at.</p></details><details><summary>How do I try it?</summary><p>The Chrome Web Store release is being prepared. For now, follow the <a href="https://github.com/kunatastic/MinuteTrail#install">manual installation instructions on GitHub</a>. No build step is needed.</p></details></section>
+  </main>
+  <footer class="footer wrap"><a class="brand" href="./"><img src="assets/logo.svg" width="26" height="26" alt="">MinuteTrail</a><p>A little awareness goes a long way.</p><nav aria-label="Footer"><a href="privacy.html">Privacy policy</a><a href="https://github.com/kunatastic/MinuteTrail/issues">Support</a></nav></footer>
+</body>
+</html>
