@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "MinuteTrail — Website Time Tracker",
+  "version": "0.1.0",
+  "description": "Know where your browsing time goes. Focused website and fullscreen time, stored only on this device.",
+  "minimum_chrome_version": "120",
+  "permissions": ["tabs", "storage", "idle", "alarms"],
+  "background": { "service_worker": "src/background/worker.js", "type": "module" },
+  "action": { "default_title": "MinuteTrail", "default_popup": "src/ui/popup.html" },
+  "options_page": "src/ui/dashboard.html",
+  "incognito": "not_allowed",
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["src/content/fullscreen.js"],
+    "run_at": "document_start"
+  }],
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'" }
+}
