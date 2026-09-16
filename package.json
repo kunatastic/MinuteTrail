@@ -1,0 +1,9 @@
+{
+  "name": "minutetrail",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A small, local-only Chrome website time tracker",
+  "scripts": { "test": "node --test" },
+  "engines": { "node": ">=22" }
+}
