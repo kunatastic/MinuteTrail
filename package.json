@@ -4,6 +4,13 @@
   "private": true,
   "type": "module",
   "description": "A small, local-only Chrome website time tracker",
-  "scripts": { "test": "node --test", "check": "node scripts/check.js" },
-  "engines": { "node": ">=22" }
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check.js",
+    "pack": "npm run check && mkdir -p dist && rm -f dist/*.zip && zip -r -X dist/minutetrail-$npm_package_version.zip manifest.json icons src -x '*.DS_Store'",
+    "pack:crx": "npm run pack && node scripts/crx.js dist/minutetrail-$npm_package_version.zip \"$CRX_KEY\" dist/minutetrail-$npm_package_version.crx"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }

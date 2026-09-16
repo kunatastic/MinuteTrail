@@ -15,7 +15,8 @@ async function checkDirectory(directory) {
 const manifest = JSON.parse(await readFile('manifest.json', 'utf8'));
 assert.equal(manifest.manifest_version, 3);
 for (const path of [manifest.background.service_worker, manifest.action.default_popup,
-  manifest.options_page, ...manifest.content_scripts.flatMap(script => script.js)]) await access(path);
+  manifest.options_page, ...Object.values(manifest.icons ?? {}),
+  ...manifest.content_scripts.flatMap(script => script.js)]) await access(path);
 await checkDirectory('src');
 await checkDirectory('scripts');
 console.log('Manifest entry points exist; all source and script JavaScript passes syntax checks.');

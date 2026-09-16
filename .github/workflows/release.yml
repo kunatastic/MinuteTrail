@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  CRX_KEY_PEM: ${{ secrets.CRX_KEY_PEM }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm test
+
+      - name: Tag must match manifest version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          version=$(node -p "require('./manifest.json').version")
+          [ "v$version" = "$GITHUB_REF_NAME" ] || { echo "tag $GITHUB_REF_NAME does not match manifest version $version"; exit 1; }
+
+      - run: npm run pack
+
+      - name: Sign CRX (only when verified uploads are enabled)
+        if: env.CRX_KEY_PEM != ''
+        run: |
+          printf '%s\n' "$CRX_KEY_PEM" > key.pem
+          node scripts/crx.js dist/minutetrail-*.zip key.pem dist/minutetrail.crx
+          rm key.pem
+
+      - name: Upload and publish to the Chrome Web Store
+        env:
+          CWS_CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+          CWS_CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
+          CWS_REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
+          CWS_EXTENSION_ID: ${{ secrets.CWS_EXTENSION_ID }}
+        run: |
+          set -euo pipefail
+          token=$(curl -sSf https://oauth2.googleapis.com/token \
+            -d client_id="$CWS_CLIENT_ID" -d client_secret="$CWS_CLIENT_SECRET" \
+            -d refresh_token="$CWS_REFRESH_TOKEN" -d grant_type=refresh_token \
+            | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).access_token")
+
+          file=$(ls dist/minutetrail.crx 2>/dev/null || ls dist/minutetrail-*.zip)
+          echo "Uploading $file"
+          upload=$(curl -sSf -X PUT "https://www.googleapis.com/upload/chromewebstore/v1.1/items/$CWS_EXTENSION_ID" \
+            -H "Authorization: Bearer $token" -H "x-goog-api-version: 2" \
+            -H "X-Goog-Upload-Protocol: raw" -H "X-Goog-Upload-File-Name: $(basename "$file")" \
+            --data-binary "@$file")
+          echo "$upload"
+          echo "$upload" | grep -Eq '"uploadState": *"(SUCCESS|IN_PROGRESS)"'
+
+          publish=$(curl -sSf -X POST "https://www.googleapis.com/chromewebstore/v1.1/items/$CWS_EXTENSION_ID/publish" \
+            -H "Authorization: Bearer $token" -H "x-goog-api-version: 2" -H "Content-Length: 0")
+          echo "$publish"
+          echo "$publish" | grep -Eq '"OK"|ITEM_PENDING_REVIEW'
+
+      - name: Attach packages to the GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --generate-notes

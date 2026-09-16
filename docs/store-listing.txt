@@ -1,0 +1,27 @@
+Category: Productivity > Workflow & Planning
+Language: English
+
+MinuteTrail shows you where your browsing time actually goes. It measures time on the website you are looking at, in the browser window you have focused, and nothing else.
+
+WHAT IT TRACKS
+• Focused website time, grouped by domain (www. is removed, other subdomains stay separate)
+• Fullscreen time, including fullscreen video, shown as part of your total rather than on top of it
+• Recent focused sessions with start and end times
+• Daily totals for the last 30 days, in your local calendar
+
+WHAT IT IGNORES
+Background tabs, unfocused windows, a second monitor you are not looking at, and time away from the browser. Tracking pauses when the browser loses focus, when the computer locks, after 60 seconds without input, or whenever you press Pause.
+
+PRIVACY FIRST
+Everything stays on this device. There is no account, no server, no telemetry and no sync. Only hostnames are stored. URLs, page titles, paths, query strings, passwords and page contents are never read or saved. Incognito windows are excluded entirely. Clear your history at any time with one confirmed click.
+
+SIMPLE BY DESIGN
+• Click the toolbar icon for today's overview
+• Open the dashboard for history, recent sessions and a per-profile label
+• Pick any day from the last 30 to see how it went
+• Works in Chrome and Arc; each browser profile keeps its own separate history
+
+PERMISSIONS
+"tabs" reads the active website's hostname. "idle" detects lock and inactivity. "alarms" checkpoints time in the background. "storage" keeps your data locally. The content script on websites reports only two booleans: whether the page has focus and whether it is fullscreen.
+
+MinuteTrail is an attention estimate, not a surveillance tool. It does not record keystrokes, clicks, or activity in other apps.
